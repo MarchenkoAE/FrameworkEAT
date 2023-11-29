@@ -1,0 +1,108 @@
+CREATE TABLE [Orders-Services] (
+  [order_id] int, FK,
+  [service_id] int, FK
+);
+
+CREATE TABLE [Orders] (
+  [id] PK,
+  [client_type_id] int, FK,
+  [client_id] int, FK,
+  [employee_id] int, FK,
+  [order_status_id] int, FK,
+  [date_of_creation] date,
+  [date_of_completion] date,
+  [completion_time] nvarchar(100),
+  CONSTRAINT [FK_Orders.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Orders-Services]([order_id])
+);
+
+CREATE TABLE [PersonalClients] (
+  [id] PK,
+  [full_name] nvarchar(200),
+  [passport] nvarchar(50),
+  [date_of_birth] date,
+  [address] nvarchar(200),
+  [email] nvarchar(100),
+  [password] nvarchar(50),
+  CONSTRAINT [FK_PersonalClients.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Orders]([client_id])
+);
+
+CREATE TABLE [Employees-Services] (
+  [employee_id] int, FK,
+  [service_id] int, FK
+);
+
+CREATE TABLE [Services] (
+  [id] PK,
+  [service_name] nvarchar(200),
+  [completion_time] nvarchar(200),
+  [error_margin] nvarchar(200),
+  [general_cost] money,
+  [specal_cost] money,
+  CONSTRAINT [FK_Services.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Orders-Services]([service_id]),
+  CONSTRAINT [FK_Services.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Employees-Services]([service_id])
+);
+
+CREATE TABLE [Employees] (
+  [id] PK,
+  [employee_position_id] int, FK,
+  [full_name] nvarchar(200),
+  [email] nvarchar(200),
+  [password] nvarcha(50),
+  [last_sign_in_time] datetime,
+  CONSTRAINT [FK_Employees.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Orders]([employee_id]),
+  CONSTRAINT [FK_Employees.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Employees-Services]([employee_id])
+);
+
+CREATE TABLE [ClientTypes] (
+  [id] PK,
+  [client_type] nvarchar(200),
+  CONSTRAINT [FK_ClientTypes.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Orders]([client_type_id])
+);
+
+CREATE TABLE [CompanyClients] (
+  [id] PK,
+  [company_name] nvarchar(200),
+  [address] nvarchar(500),
+  [INN] nvarchar(50),
+  [RS] nvarchar(50),
+  [BIC] nvarchar(50),
+  [head_full_name] nvarchar(200),
+  [contact_full_name] nvarchar(200),
+  [phone] nvarchar(50),
+  [email] nvarchar(100),
+  [password] nvarchar(50),
+  CONSTRAINT [FK_CompanyClients.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Orders]([client_id])
+);
+
+CREATE TABLE [EmployeePositions] (
+  [id] PK,
+  [position_name] nvarchar(200),
+  CONSTRAINT [FK_EmployeePositions.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Employees]([employee_position_id])
+);
+
+CREATE TABLE [OrderStatuses] (
+  [id] PK,
+  [status_name] nvarchar(200),
+  CONSTRAINT [FK_OrderStatuses.id]
+    FOREIGN KEY ([id])
+      REFERENCES [Orders]([order_status_id])
+);
+

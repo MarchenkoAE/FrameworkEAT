@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>CompanyFramework_EAT</Title>
+    <PackageIcon>22. Windows Logo.jpg</PackageIcon>
+    <NeutralLanguage>aa</NeutralLanguage>
+    <PackageId>CompanyFramework_EAT</PackageId>
+    <Version>2.7.1</Version>
+    <Authors>Edward Fishenbach</Authors>
+    <Company>DemicCo</Company>
+    <Product>CompanyFramework_EAT</Product>
+    <Description>a test nugget project.</Description>
+    <PackageTags>test</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\ready\ready\CompanyApp_1C\" />
+    <Folder Include="Resources\ready\ready\CompanyApp_Desktop\" />
+    <Folder Include="Resources\ready\ready\CompanyApp_Web\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Pictures\Ð¤Ð¾Ð½Ð¾Ð²ÑÐµ Ð¸Ð·Ð¾Ð±ÑÐ°Ð¶ÐµÐ½Ð¸Ñ ÑÐ°Ð±Ð¾ÑÐµÐ³Ð¾ ÑÑÐ¾Ð»Ð°\22. Windows Logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="2.7" Version="2.7.1" />
+  </ItemGroup>
+
+</Project>
